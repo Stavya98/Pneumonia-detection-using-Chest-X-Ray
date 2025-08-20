@@ -7,11 +7,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>🩻 Pneumonia Detection</h1>
+        <h1> Pneumonia Detection</h1>
         <p class="subtitle">Upload a chest X-ray image and our AI model will predict if it shows <b>Normal</b> or <b>Pneumonia</b>.</p>
 
         <form method="POST" enctype="multipart/form-data" class="upload-form">
-            <label for="file" class="upload-btn">📂 Choose X-ray Image</label>
+            <label for="file" class="upload-btn"> Choose X-ray Image</label>
             <input id="file" type="file" name="file" accept="image/*" required hidden>
             <button type="submit" class="predict-btn">🔍 Analyze X-ray</button>
         </form>
@@ -26,9 +26,9 @@
         {% if prediction %}
             <div class="result-box {% if prediction == 'PNEUMONIA' %}bad{% else %}good{% endif %}">
                 {% if prediction == "PNEUMONIA" %}
-                    ⚠️ Prediction: {{ prediction }}
+                     Prediction: {{ prediction }}
                 {% else %}
-                    ✅ Prediction: {{ prediction }}
+                     Prediction: {{ prediction }}
                 {% endif %}
             </div>
         {% endif %}

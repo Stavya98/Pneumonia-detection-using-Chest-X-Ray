@@ -7,9 +7,8 @@ from PIL import Image
 
 app = Flask(__name__)
 
-# =====================
-# Load Model
-# =====================
+
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 model = models.resnet18(weights=None)
@@ -18,9 +17,8 @@ model.load_state_dict(torch.load("pneu.pth", map_location=device))
 model = model.to(device)
 model.eval()
 
-# =====================
+
 # Preprocessing
-# =====================
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
@@ -40,9 +38,8 @@ def predict(image_path):
 
     return class_names[pred.item()]
 
-# =====================
+
 # Routes
-# =====================
 @app.route("/", methods=["GET", "POST"])
 def index():
     prediction = None
@@ -56,11 +53,11 @@ def index():
         if file.filename == "":
             return render_template("index.html", prediction="No file selected")
 
-        # Save uploaded file
+       
         filepath = os.path.join("static", file.filename)
         file.save(filepath)
 
-        # Predict
+        
         prediction = predict(filepath)
         uploaded_img = filepath
 
